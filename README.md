@@ -4,7 +4,7 @@
 
 ## Get tipped for for your commits!
 
-**Note**: You're currently viewing the repo for the **Server**. If you'd like to see the repo for the server, [visit here](https://github.com/MarkMcKinney/breadjar-extension).
+**Note**: You're currently viewing the repo for the **Server**. If you'd like to see the repo for the Chrome Extension, [visit here](https://github.com/MarkMcKinney/breadjar-extension).
 
 **Description**: If you've used GitHub, you can probably remember a couple times someone built something cool or added something significant to your own project. You may have wanted to say thanks! or support their work. BreadJar is the way to do that...and for others to show their thanks for you!
 
