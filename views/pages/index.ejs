@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BreadJar | Get Tipped for Your Commits</title>
+  <link rel="icon" href="/public/assets/images/logo.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/css/theme.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://breadjar.herokuapp.com">
+      <img src="/public/assets/images/logo.png" width="30" class="d-inline-block align-text-top">
+      BreadJar
+    </a>
+  
+      <div class="d-flex">
+        <a href="https://buymeacoffee.com/2020helpedme" class="btn btn-secondary" target="_blank"><span class="fa fa-coffee"></span> Buy Me a Coffee</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center text-white pb-3">
+  <h1><br>Get Tipped for Your Commits!</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 p-3">
+        <video width="100%" loop autoplay muted playsinline class="video">
+          <source src="/public/assets/videos/breadjar-tour-compressed.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="col-lg-6 px-3 pt-3">
+      <div class="card intro-card">
+        <div class="card-body">
+          <p>If you've used GitHub, you can probably remember a couple times someone built something cool or added something
+          significant to your own project. You may have wanted to say <b><i>thanks!</i></b> or support their work. 
+          <font class="text-primary" style="font-weight: 700;">BreadJar</font> is the way to do that...and for others to show their thanks for <i>you!</i>
+          </p>
+          <p>
+              <h4>Features:</h4>
+          😎 Chrome extension that places a tip button to the latest repo commit.<br>
+          🔗 Redirect to your Buy Me a Coffee URL.<br>
+          📊 Statistics and record keeping for tips received and given.<br>
+          📦 Free and <a href="https://github.com/MarkMcKinney/breadjar-extension">Open-Source</a>!<br>
+          </p><br>
+          <a href="https://github.com/login/oauth/authorize?client_id=<%= client_id %>" class="btn btn-dark card-button-round"><span class="fa fa-github"></span> Get Started</a>
+        </div>
+      </div>
+
+  </div>
+</div>
+  </div>
+</div>
+
+<!-- Spacer -->
+<div class="container pt-5">
+  <div class="row pt-5">
+  </div>
+</div>
+<!-- Footer -->
+<footer class="footer text-center bg-dark text-muted ">
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    📦 <a class="text-reset fw-bold" href="https://github.com/MarkMcKinney/breadjar-extension" target="_blank"> GitHub Repo</a>
+    | 🛠️ Built By <a class="text-reset fw-bold" href="http://markdmckinney.com/?ref=breadjar" target="_blank">Mark McKinney</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+</html>

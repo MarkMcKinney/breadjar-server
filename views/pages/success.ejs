@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BreadJar - <%= userData.login %></title>
+  <link rel="icon" href="/public/assets/images/logo.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/css/theme.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    function updateTipURL() {
+      document.getElementById("tipurl_change_status").innerHTML = "Loading...";
+      $("#tipurl_change_status").fadeIn(300);
+      var newURL = document.getElementById("tip_link").value;
+      $.get("https://breadjar.herokuapp.com/account/tipurl?newtipurl=" + encodeURIComponent(newURL), function(data, status){
+        var data = JSON.parse(data);
+
+        // If change was successful
+        if (data['success'] == true) {
+          $("#tipurl_change_status").removeClass("alert-info").addClass("alert-success");
+          document.getElementById("tipurl_change_status").innerHTML = "URL was changed successfully.";
+          $("#tipurl_change_status").delay(3000).fadeOut(150);
+        }
+        // If change was unsuccessful
+        else {
+          $("#tipurl_change_status").removeClass("alert-info").addClass("alert-danger");
+          document.getElementById("tipurl_change_status").innerHTML = data['errors'];
+          $("#tipurl_change_status").delay(3000).fadeOut(150);
+        }
+      });
+      $("#tipurl_change_status").removeClass("alert-danger").removeClass("alert-success").addClass("alert-info");
+    }
+
+    function tipRedirect(url=false) {
+      if (url != false) {
+        window.open(url);
+      }
+      $("#alert_container_tipping_redirect").fadeOut(150);
+      document.getElementById("tip_link").focus();
+    }
+
+
+  </script>
+  
+</head>
+<body>
+
+  <% if(redirectURL != false) { %>
+
+<div class="darken-bg" id="alert_container_tipping_redirect">
+  <div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">😏 Just FYI!</h4>
+    <p>Please be sure to add your own <b>Buy Me a Coffee</b> link to your BreadJar profile. This way you can get tipped for your commits!<br><br>You can add it by coming back to this page after tipping or by clicking on the browser extension icon. </p>
+    <hr>
+    <p class="mb-0">  
+      <button onclick="tipRedirect('<%= redirectURL %>')" type="button" class="btn btn-primary">Continue to Tipping</button>
+      <button onclick="tipRedirect()" type="button" class="btn btn-secondary">Add Tip Link Now</button>
+    </p>
+  </div>
+</div>
+
+<% } %> 
+
+<% if(redirectURL == false && tipURL == "") { %>
+
+  <div class="darken-bg" id="alert_container_tipping_redirect">
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">🥳 Getting Started</h4>
+      <p>Getting started with <b>BreadJar</b> is super easy. As soon as you have the browser extension installed, just add your <b>Buy Me a Coffee</b> link by connecting it on this page. That way you can get tipped for your commits!</p>
+      <hr>
+      <p class="mb-0">  
+        <button onclick="tipRedirect('https:\/\/chrome.google.com\/webstore\/detail\/breadjar\/jddjgmnnbpkfflmmedllkehphlobeibf')" type="button" class="btn btn-secondary">Get Chrome Extension</button>
+        <button onclick="tipRedirect()" type="button" class="btn btn-secondary">Add Tip Link Now</button>
+      </p>
+    </div>
+  </div>
+  
+  <% } %> 
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://breadjar.herokuapp.com">
+      <img src="/public/assets/images/logo.png" width="30" class="d-inline-block align-text-top">
+      BreadJar
+    </a>
+  
+      <div class="d-flex">
+        <a href="https://buymeacoffee.com/2020helpedme" class="btn btn-secondary" target="_blank"><span class="fa fa-coffee"></span> Buy Me a Coffee</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center text-white p-5">
+  <h1>👋<br>Hey, <%= userData.login %>!</h1>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 p-3">
+      <div class="card full-height">
+        <div class="card-body">
+          <h3 class="card-title">⚙️ Account Data</h3><br>
+          <p>
+            <b>GitHub Account:</b> <%= userData.login %><br>
+            <b>Total Tip Link Clicks:</b> <%= bmcClicks %><br>
+            <a href="https://chrome.google.com/webstore/detail/breadjar/jddjgmnnbpkfflmmedllkehphlobeibf" target="_blank">Get Chrome Extension</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 p-3">
+      <div class="card full-height">
+        <div class="card-body">
+          <h3 class="card-title">🔗 Edit BuyMeACoffee Link</h3>
+          <br>
+          <div id="tipurl_change_status" class="alert-info"></div>
+          <table class="tip-link-form" cellspacing="0">
+            <tr>
+              <td width="10%">
+                https://buymeacoffee.com/
+              </td>
+              <td>
+                <input name="tip_link" id="tip_link" type="text" class="form-control" value="<%= tipURL %>"/>
+              </td>
+              <td>
+                <button onclick="updateTipURL()" type="button" class="btn btn-primary">Change</button>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <small>Don't have a BMC account? <a href="https://www.buymeacoffee.com/signup" target="_blank">Create one</a></small>
+          <br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-6 p-3">
+      <div class="card full-height">
+        <div class="card-body">
+          <h3 class="card-title">💰 Tips Received</h3>
+          <br>
+          <ul>
+            <% for(var i=0; i<tipsReceived.length; i++) { %>
+                <li>
+                    <b><%= tipsReceived[i]['from'] %>: <%= tipsReceived[i]['commit'] %> on <%= tipsReceived[i]['project'] %></b>
+                    <br><i><%= decodeURIComponent(tipsReceived[i]['desc']) %></i>
+                </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-6 p-3">
+        <div class="card full-height">
+          <div class="card-body">
+            <h3 class="card-title">❤️ Tips Given</h3>
+            <br>
+            <% for(var i=0; i<tipsGiven.length; i++) { %>
+              <li>
+                  <b><%= tipsGiven[i]['to'] %>: <%= tipsGiven[i]['commit'] %> on <%= tipsGiven[i]['project'] %></b>
+                  <br><i><%= decodeURIComponent(tipsGiven[i]['desc']) %></i>
+              </li>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Spacer -->
+<div class="container pt-5">
+  <div class="row pt-5">
+  </div>
+</div>
+<!-- Footer -->
+<footer class="footer text-center bg-dark text-muted ">
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    📦 <a class="text-reset fw-bold" href="https://github.com/MarkMcKinney/breadjar-extension" target="_blank"> GitHub Repo</a>
+    | 🛠️ Built By <a class="text-reset fw-bold" href="http://markdmckinney.com/?ref=breadjar" target="_blank">Mark McKinney</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+</html>

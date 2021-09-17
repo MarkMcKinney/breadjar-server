@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BreadJar - Invite <%= ghUser %></title>
+  <link rel="icon" href="/public/assets/images/logo.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/css/theme.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+  <script>
+    function inviteLink(){
+      console.log("Activated")
+      window.open('https://github.com/<%= ghUser %>?breadjarInvite=<%= ghUser %>','_blank')
+    }
+  </script>
+
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://breadjar.herokuapp.com">
+        <img src="/public/assets/images/logo.png" width="30" class="d-inline-block align-text-top">
+        BreadJar
+      </a>
+    
+        <div class="d-flex">
+          <a href="https://buymeacoffee.com/2020helpedme" class="btn btn-secondary" target="_blank"><span class="fa fa-coffee"></span> Buy Me a Coffee</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+<div class="jumbotron text-center text-white p-5">
+  <h1>🍞<br>Share the bread!</h1>
+</div>
+<br>
+<div class="row m-4">
+
+      <div class="col-md-4"></div>
+
+      <div class="col-md-4">
+        <div class="card invite-card">
+          <div class="card-body">
+            <h3 class="card-title text-center">Hmmm...</h3>
+            <br>
+            <p>It looks like <b><%= ghUser %></b> doesn't have their BreadJar setup!</p>
+            <p>Maybe you can encourage them by reaching out?</p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary card-button" onclick="inviteLink()">✉️ Invite <%= ghUser %> to BreadJar</button>
+      </div>
+
+      <div class="col-md-4"></div>
+
+</div>
+
+<!-- Spacer -->
+<div class="container pt-5 m-3">
+  <div class="row pt-5 m-4">
+  </div>
+</div>
+<!-- Footer -->
+<footer class="footer text-center bg-dark text-muted ">
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    📦 <a class="text-reset fw-bold" href="https://github.com/MarkMcKinney/breadjar-extension" target="_blank"> GitHub Repo</a>
+    | 🛠️ Built By <a class="text-reset fw-bold" href="http://markdmckinney.com/?ref=breadjar" target="_blank">Mark McKinney</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+</html>
